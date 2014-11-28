@@ -1,6 +1,6 @@
 angular.module('backTop', []).
 
-directive('backTop', function($interval){
+directive('backTop', function(){
 	var doc = document;
 
 	return function($scope, $elements, attrs){
