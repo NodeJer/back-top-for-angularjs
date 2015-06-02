@@ -11,29 +11,22 @@
 <style>
     img{
         position: fixed;
-        bottom: 20px; right: 10px;
-        opacity: 0;
-        filter: alpha(opacity=0);
+        bottom: 100px; right: 100px;
     }
-    .hide{
+    img.ng-remove-hide{
+        transition: all .6s;
         opacity: 0;
-        filter: alpha(opacity=0);
-        -webkit-transition:opacity .4s;
-        transition:opacity .4s;
     }
-     .show{
+    .img.ng-remove-hide-active{
         opacity: 1;
-        -webkit-transition:opacity .4s;
-        transition:opacity .4s;
-        filter: alpha(opacity=100);
     }
     body{
-        height: 1000px;
+        height: 1100px;
     }
 </style>
 </head>
 <body id="ng-app">
-    <img src="top.png" back-top="200" show-class="show" hide-class="hide">
+    <img src="top.png" back-top offset="200">
     <!--[if lte IE 7]>
         <script src="json2.js"></script>
     <![endif]-->
@@ -46,6 +39,7 @@
           // Completely disable SCE to support IE7.
           $sceProvider.enabled(false);
         });
+        
         angular.bootstrap(document.body, ['app']);
     </script>
 </body>

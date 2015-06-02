@@ -4,51 +4,25 @@ directive('backTop', function(){
 	var doc = document;
 
 	return function($scope, $elements, attrs){
+		var $window = angular.element(window);
+
 		$elements.on('click', function(){
-			
 			doc.documentElement.scrollTop = 0;
 			doc.body.scrollTop = 0;
-
-			hide();
 		});
 
-		hide();
-
-		angular.element(window).on('scroll', function(){
+		$window.on('scroll', function(){
 			var scrollTop = doc.documentElement.scrollTop||doc.body.scrollTop;
 
-			if(scrollTop>attrs.backTop){
-				show();
+			if(scrollTop > attrs.offset){
+				$elements.removeClass('ng-hide');
 			}
 			else{
-				hide();
+				$elements.addClass('ng-hide');
 			}
 		});
 
-		function show(){
-			var res = hasClass();
-			if(!res){
-				$elements.css('display', 'block');
-			}
-			else{
-				$elements.removeClass(attrs.hideClass).addClass(attrs.showClass);
-			}
-			
-		}
-		function hide(){
-			var res = hasClass();
-			if(!res){
-				$elements.css('display', 'none');
-			}
-			else{
-				$elements.removeClass(attrs.showClass).addClass(attrs.hideClass);
-			}
-		}
-		function hasClass(){
-			if(attrs.showClass && attrs.hideClass){
-				return true;
-			}
-		}
+		$window.triggerHandler('scroll');
 	}
 
 });
