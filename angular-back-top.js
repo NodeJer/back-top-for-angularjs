@@ -1,4 +1,4 @@
-angular.module('ngBackTop', []).
+angular.module('ng.back.top', []).
 
 directive('backTop', function(){
 	var doc = document;
